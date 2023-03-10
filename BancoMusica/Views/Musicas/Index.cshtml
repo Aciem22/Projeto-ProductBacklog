@@ -1,11 +1,10 @@
 ﻿
-
-
-@model IEnumerable<BancoMusica.Models.Musica>
+@model BancoMusica.Models.GeneroMusicaViewModel
 
 @{
     ViewData["Title"] = "Index";
-}
+    }
+
 
 
 <h1>Minhas mídias</h1>
@@ -13,26 +12,40 @@
 <p>
     <a asp-action="Create">Adicionar nova mídia</a>
 </p>
+
+
+<form asp-controller="Musicas" asp-action="Index" method="get">
+    <p>
+        <select asp-for="GeneroMusica" asp-items="Model.Genero">
+            <option value="">Todos</option>
+        </select>
+    
+
+        Nome da banda: <input type="text" name="SearchString"/>
+        <input type="submit" value="Pesquisar"/>
+    </p>
+</form>
+
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+              
+                @Html.DisplayNameFor(model => model.Musicas![0].Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ReleaseDate)
+                @Html.DisplayNameFor(model => model.Musicas![0].ReleaseDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Genre)
+                @Html.DisplayNameFor(model => model.Musicas![0].Genre)
             </th>
 
-            <th>
-                <video> @Html.DisplayNameFor(model => model.Video) </video> 
-            </th>
+
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Musicas) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
@@ -52,4 +65,6 @@
         </tr>
 }
     </tbody>
+
 </table>
+

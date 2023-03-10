@@ -1,0 +1,65 @@
+﻿
+@model BancoMusica.Models.GeneroMusicaViewModel
+
+@{
+    ViewData["Title"] = "Index-Estab";
+}
+
+
+<h1>Encontrar artistas</h1>
+
+
+
+<form asp-controller="Musicas" asp-action="Indexee" method="get">
+    <p>
+        <select asp-for="GeneroMusica" asp-items="Model.Genero">
+            <option value="">Todos</option>
+        </select>
+    
+
+        Nome da banda: <input type="text" name="SearchString"/>
+        <input type="submit" value="Pesquisar"/>
+    </p>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Musicas![0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Musicas![0].ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Musicas![0].Genre)
+            </th>
+
+            <th>
+                <video> @Html.DisplayNameFor(model => model.Musicas![0].Video) </video> 
+            </th>
+
+         
+
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Musicas) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+
+
+        </tr>
+}
+    </tbody>
+</table>
+

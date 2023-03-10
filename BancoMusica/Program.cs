@@ -2,8 +2,10 @@
 using BancoMusica.Models;
 using Microsoft.Extensions.DependencyInjection;
 using BancoMusica.Data;
+ 
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 builder.Services.AddDbContext<BancoMusicaContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BancoMusicaContext") ?? throw new InvalidOperationException("Connection string 'BancoMusicaContext' not found.")));
@@ -12,8 +14,9 @@ builder.Services.AddDbContext<BancoMusicaContext>(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+app.UseStaticFiles();
 
-using(var scope = app.Services.CreateScope())
+using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
