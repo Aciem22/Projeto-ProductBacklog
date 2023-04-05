@@ -7,21 +7,21 @@
 
 
 
-<h1>Minhas mídias</h1>
+<h2>Tarefas - Product Backlog</h2>
 
 <p>
-    <a asp-action="Create">Adicionar nova mídia</a>
+    <a asp-action="Create">Adicionar nova tarefa</a>
 </p>
 
 
 <form asp-controller="Musicas" asp-action="Index" method="get">
     <p>
         <select asp-for="GeneroMusica" asp-items="Model.Genero">
-            <option value="">Todos</option>
+            <option value="">Todas</option>
         </select>
     
 
-        Nome da banda: <input type="text" name="SearchString"/>
+        Nome da tarefa: <input type="text" name="SearchString"/>
         <input type="submit" value="Pesquisar"/>
     </p>
 </form>
@@ -31,14 +31,13 @@
     <thead>
         <tr>
             <th>
-              
-                @Html.DisplayNameFor(model => model.Musicas![0].Title)
+                Nome da atividade
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Musicas![0].ReleaseDate)
+                Data extimada para Finalização
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Musicas![0].Genre)
+                Grau de Importância
             </th>
 
 
@@ -58,9 +57,9 @@
             </td>
 
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
             </td>
         </tr>
 }

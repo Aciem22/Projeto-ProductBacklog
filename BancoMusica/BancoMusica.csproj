@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Paginacao.cs" />
     <Compile Remove="Views\Musicas\Index-E.cshtml.cs" />
     <Compile Remove="Views\Musicas\Indexe.cshtml.cs" />
   </ItemGroup>
@@ -22,6 +23,7 @@
     <Content Remove="Views\Musicas\AudioVideo.cshtml" />
     <Content Remove="Views\Musicas\Index-E.cshtml" />
     <Content Remove="Views\Musicas\Indexe.cshtml" />
+    <Content Remove="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

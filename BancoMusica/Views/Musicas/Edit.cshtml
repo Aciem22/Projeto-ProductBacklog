@@ -4,9 +4,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Musica</h4>
+<h1>Editar tarefa - Backlog</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,38 +13,44 @@
             <input type="hidden" asp-for="Id" />
             
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
+                <label asp-for="Title" class="control-label">Nome</label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="ReleaseDate" class="control-label"></label>
+                <label asp-for="Descricao" class="control-label">Descrição</label>
+                <input asp-for="Descricao" class="form-control" />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ReleaseDate" class="control-label">Data de Finalização</label>
                 <input asp-for="ReleaseDate" class="form-control" />
                 <span asp-validation-for="ReleaseDate" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Genre" class="control-label"></label>
+                <label asp-for="Genre" class="control-label">Grau de importância</label>
                 <input asp-for="Genre" class="form-control" />
                 <span asp-validation-for="Genre" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Video" class="control-label"></label>
+                <label asp-for="Video" class="control-label">Mídia</label>
                 <input type= "file" asp-for="Video" class="form-control" />
                 <span asp-validation-for="Video" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Salvar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar a lista</a>
 </div>
 
 @section Scripts {

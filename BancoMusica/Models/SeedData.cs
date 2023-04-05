@@ -17,24 +17,8 @@ namespace BancoMusica.Models;
                 {
                     return;
                 }
-            try
-            {
-                context.Musica.AddRange(
-                    new Musica
-                    {
-                        Title = "Vizzen & Protolizard - Heaven Knows",
-                        ReleaseDate = DateTime.Parse("2023-02-28"),
-                        Genre = "Eletrônica",
-                        Video = "https://open.spotify.com/embed/track/36JG5eKqKzTkWXvhf8BHEk?utm_source=generator"
-                    }
-                    );
-            }
-
-            catch (Exception ex)
-            {
-                return;
-            }
-                context.SaveChanges();
+          
+              
             }
         }
 

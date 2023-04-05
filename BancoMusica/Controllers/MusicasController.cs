@@ -190,7 +190,7 @@ namespace BancoMusica.Controllers
             var musicaToUpdate = await _context.Musica.FirstOrDefaultAsync(s => s.Id == id);
             if (await TryUpdateModelAsync<Musica>(
                 musicaToUpdate,"",
-                s => s.Title, s=> s.Genre, s=> s.ReleaseDate))
+                s => s.Title, s =>s.Descricao, s=> s.Genre, s=> s.ReleaseDate))
             {
                 try
                 {
