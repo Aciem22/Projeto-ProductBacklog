@@ -21,10 +21,8 @@ namespace BancoMusica.Models
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
 
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
         [Required(ErrorMessage ="Campo obrigatório")]
-        [StringLength(30)]
-        public String? Genre { get; set; }
+        public int Genre { get; set; }
         
         public String? Video { get; set; }
        

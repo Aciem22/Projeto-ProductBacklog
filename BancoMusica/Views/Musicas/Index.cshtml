@@ -1,9 +1,12 @@
-﻿
+﻿@using System.Linq;
+@using DocumentFormat.OpenXml.Office2010.ExcelAc;
 @model BancoMusica.Models.GeneroMusicaViewModel
 
 @{
     ViewData["Title"] = "Index";
-    }
+}
+
+    
 
 
 
@@ -17,9 +20,8 @@
 <form asp-controller="Musicas" asp-action="Index" method="get">
     <p>
         <select asp-for="GeneroMusica" asp-items="Model.Genero">
-            <option value="">Todas</option>
+            <option typeof="number">Todas</option>
         </select>
-    
 
         Nome da tarefa: <input type="text" name="SearchString"/>
         <input type="submit" value="Pesquisar"/>

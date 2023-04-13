@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BancoMusica.Data;
 using BancoMusica.Models;
-using DocumentFormat.OpenXml.Bibliography;
 
 namespace BancoMusica.Controllers
 {
+
     public class MusicasController : Controller
     {
         private readonly BancoMusicaContext _context;
+		private readonly IFormatProvider? s;
 
-        public MusicasController(BancoMusicaContext context)
+		public MusicasController(BancoMusicaContext context)
         {
             _context = context;
         }
@@ -24,7 +21,7 @@ namespace BancoMusica.Controllers
         //public async Task<IActionResult> Index()
         //{
             //Inicio
-            public async Task<IActionResult> Index(string GeneroMusica, string searchString, int? pagenumber)
+            public async Task<IActionResult> Index(int GeneroMusica, string searchString, int? pagenumber)
             {
                 
                 if(_context.Musica == null)
@@ -32,15 +29,19 @@ namespace BancoMusica.Controllers
                     return Problem("ERRO de entidade é nulo");
                 }
             //inicio
-            IQueryable<string> genreQuery = from m in _context.Musica
-                                            orderby m.Genre
+            IQueryable<int> genreQuery = from m in _context.Musica
+                                            orderby m.Genre ascending
+                                            
                                             select m.Genre;
 
                 //O LINQ (Language-Integrated Query) fornece recursos de consulta no nível da linguagem e uma API de função
                 //de ordem superior para C# e Visual Basic, que permitem escrever código declarativo expressivo.
 
                 var musicas = from m in _context.Musica
-                              select m;
+                              select m ;
+
+            //Usando orderby para mostrar as atividaes com grau de importancia 1,2,3...
+            musicas = musicas.OrderBy(m => m.Genre);
 
 
                 if (!String.IsNullOrEmpty(searchString))
@@ -48,7 +49,7 @@ namespace BancoMusica.Controllers
                     musicas = musicas.Where(s => s.Title!.Contains(searchString));
                 }
 
-            if (!String.IsNullOrEmpty(GeneroMusica))
+            if (int.IsNegative(GeneroMusica))
             {
                 musicas = musicas.Where(x => x.Genre == GeneroMusica);
             }
@@ -63,7 +64,7 @@ namespace BancoMusica.Controllers
 
             }
 
-        public async Task<IActionResult> Indexee(string GeneroMusica, string searchString)
+        public async Task<IActionResult> Indexee(int GeneroMusica, string searchString)
         {
 
             if (_context.Musica == null)
@@ -71,7 +72,7 @@ namespace BancoMusica.Controllers
                 return Problem("ERRO de entidade é nulo");
             }
             //inicio
-            IQueryable<string> genreQuery = from m in _context.Musica
+            IQueryable<int> genreQuery = from m in _context.Musica
                                             orderby m.Genre
                                             select m.Genre;
 
@@ -87,7 +88,7 @@ namespace BancoMusica.Controllers
                 musicas = musicas.Where(s => s.Title!.Contains(searchString));
             }
 
-            if (!String.IsNullOrEmpty(GeneroMusica))
+            if (int.IsNegative(GeneroMusica))
             {
                 musicas = musicas.Where(x => x.Genre == GeneroMusica);
             }
@@ -160,6 +161,8 @@ namespace BancoMusica.Controllers
             }
             return View(musica);
         }
+
+
         // GET: Musicas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -190,7 +193,7 @@ namespace BancoMusica.Controllers
             var musicaToUpdate = await _context.Musica.FirstOrDefaultAsync(s => s.Id == id);
             if (await TryUpdateModelAsync<Musica>(
                 musicaToUpdate,"",
-                s => s.Title, s =>s.Descricao, s=> s.Genre, s=> s.ReleaseDate))
+                s => s.Title, s =>s.Descricao, s=> s.Genre, s=> s.ReleaseDate, s=> s.Video))
             {
                 try
                 {

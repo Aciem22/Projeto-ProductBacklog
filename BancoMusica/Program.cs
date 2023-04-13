@@ -2,13 +2,16 @@
 using BancoMusica.Models;
 using Microsoft.Extensions.DependencyInjection;
 using BancoMusica.Data;
- 
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using BancoMusica.Repositorio;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddDbContext<BancoMusicaContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BancoMusicaContext") ?? throw new InvalidOperationException("Connection string 'BancoMusicaContext' not found.")));
+
+builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -21,6 +24,7 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
 
     SeedData.Initialize(services);
+    
 }
 
 // Configure the HTTP request pipeline.
@@ -40,6 +44,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();

@@ -1,6 +1,11 @@
 ﻿using System.Diagnostics;
 using BancoMusica.Models;
 using Microsoft.AspNetCore.Mvc;
+using BancoMusica.Repositorio;
+using System;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
+using Microsoft.AspNetCore.Components.Web;
+using ErrorEventArgs = System.IO.ErrorEventArgs;
 
 namespace BancoMusica.Controllers
 {
@@ -17,7 +22,7 @@ namespace BancoMusica.Controllers
         {
             return View();
         }
-
+   
         public IActionResult Privacy()
         {
             return View();

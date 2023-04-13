@@ -15,5 +15,7 @@ namespace BancoMusica.Data
         }
 
         public DbSet<BancoMusica.Models.Musica> Musica { get; set; } = default!;
+        public DbSet<BancoMusica.Models.LoginModel> Login { get; set; } = default!;
+        public DbSet<Models.UsuarioModel> Usuarios { get; set; }
     }
 }
