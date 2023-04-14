@@ -39,7 +39,7 @@ namespace BancoMusica.Controllers
                 {
                     usuario = _usuarioRepositorio.Adicionar(usuario);
                     TempData["MensagemSucesso"] = "Usuario cadastrado com sucesso";
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Login");
                 }
                 return View();
             }

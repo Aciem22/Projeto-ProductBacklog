@@ -34,7 +34,7 @@ namespace BancoMusica.Controllers
                     {
                         if (usuario.SenhaValida(loginModel.Senha))
                         {
-                            return RedirectToAction("Index", "Musicas");
+                            return RedirectToAction("Index", "Home");
                         }
 
                         TempData["MensagemErro"] = "Senha inválida";
